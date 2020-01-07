@@ -11,13 +11,15 @@ replacements = {
     "Þ": "Ş"
 }
 
+allowed_file_formats = ("srt", "sub", "sbv", "ass")
+
 files = [f for f in os.listdir('.') if os.path.isfile(f)]
 
 for file in files:
-    print(file)
-    if not file.endswith(".srt"):
+    file_format = file.split(".")[-1]
+    if file_format not in allowed_file_formats:
         files.remove(file)
-        print(f"removed {file}")
+        print(f"removed {file} from the file list that will be processed.")
 
 for f in files:
     print(f"opening file {f}")
